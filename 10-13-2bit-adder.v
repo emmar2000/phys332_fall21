@@ -4,26 +4,27 @@
 // code is initially broken.  See attached photos for intended design
 
 module example1(
-    input [3:0] swt,
-    output [2:0] led
+    //Need to declare four switches
+    input [3:0] SW,
+    output [2:0] LED
     );
-    wire a1, a0, b1, b0; // inputs
-    wire s1, s0, cout; // outputs
-    wire c_out0 // intermediate
+    wire a1, a0, b1, b0;
+    wire s1, s0, cout;
+    wire c_mid; // intermedite wire
     
     // global inputs
-    assign a0 = swt[0];
-    assign a1 = swt[1];
-    assign b0 = swt[2];
-    assign b1 = swt[3];
+    assign a0 = SW[0];
+    assign a1 = SW[1];
+    assign b0 = SW[2];
+    assign b1 = SW[3];
     
     // global outputs
-    assign led[0] = s0;
-    assign led[1] = s1;
-    assign led[2] = cout;
+    assign LED[0] = s0;
+    assign LED[1] = s1;
+    assign LED[2] = cout;
     
-    fulladder add0(a0,b0, 0, c_out0, s0);
-    fulladder add1(a1,b1,c_out0, cout, s1);
+    fulladder add0(a0, b0, 0, c_mid, s0);
+    fulladder add1(a1, b1, c_mid, cout, s1);
         
 endmodule 
 
